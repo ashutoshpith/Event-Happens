@@ -1,6 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+import EventList from "./views/EventList.vue";
+import EventShow from "./views/EventShow.vue";
+import EventCreate from "./views/EventCreate.vue";
+import User from "./views/User.vue";
 
 Vue.use(Router);
 
@@ -21,6 +25,32 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/About.vue")
+    },
+    {
+      path: "/create",
+      name: "event-create",
+      component: EventCreate
+    },
+    {
+      path: "/list",
+      name: "event-list",
+      component: EventList
+    },
+    {
+      path: "/eventlist",
+      redirect: { name: "eventList" }
+    },
+    {
+      path: "/event/:id",
+      name: "event-show",
+      component: EventShow,
+      props: true
+    },
+    {
+      path: "/user/:username",
+      name: "user",
+      component: User,
+      props: true
     }
   ]
 });
