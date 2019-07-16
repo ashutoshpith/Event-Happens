@@ -1,24 +1,28 @@
 <template>
   <div>
     <h1>Event List</h1>
-    <EventList />
+    <EventList v-for="event in events" :key="event.id" :event="event" />
     <BaseIcon />
   </div>
 </template>
 
 <script>
 import EventList from "@/components/EventList.vue";
-import axios from "axios";
+import EventService from "@/services/EventService.js";
 
 export default {
   components: {
     EventList
   },
+  data() {
+    return {
+      events: []
+    };
+  },
   created() {
-    axios
-      .get("http://localhost:3000/events") // Does a get request
+    EventService.getEvents()
       .then(response => {
-        console.log(response.data); // For now, logs out the response
+        this.events = response.data;
       })
       .catch(error => {
         console.log("There was an error:", error.response); // Logs out the error
