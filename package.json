@@ -12,7 +12,9 @@
     "core-js": "^2.6.5",
     "lodash": "^4.17.14",
     "vue": "^2.6.10",
+    "vue-datepicker": "^1.3.0",
     "vue-router": "^3.0.3",
+    "vuejs-datepicker": "^1.6.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
