@@ -8,26 +8,16 @@
 
 <script>
 import EventList from "@/components/EventList.vue";
-import EventService from "@/services/EventService.js";
+import { mapState } from "vuex";
 
 export default {
   components: {
     EventList
   },
-  data() {
-    return {
-      events: []
-    };
-  },
   created() {
-    EventService.getEvents()
-      .then(response => {
-        this.events = response.data;
-      })
-      .catch(error => {
-        console.log("There was an error:", error.response); // Logs out the error
-      });
-  }
+    this.$store.dispatch("fetchEvents");
+  },
+  computed: mapState(["events"])
 };
 </script>
 
