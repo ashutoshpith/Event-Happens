@@ -18,9 +18,7 @@ export const mutations = {
   }
 };
 export const actions = {
-  createEvent({ commit, rootState, dispatch }, event) {
-    console.log(rootState.user.user.name);
-
+  createEvent({ commit, dispatch }, event) {
     return EventService.postEvent(event)
       .then(() => {
         commit("ADD_EVENT", event);
