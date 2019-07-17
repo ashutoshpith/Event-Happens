@@ -5,10 +5,11 @@ import EventList from "./views/EventList.vue";
 import EventShow from "./views/EventShow.vue";
 import EventCreate from "./views/EventCreate.vue";
 import User from "./views/User.vue";
+import NProgress from "nprogress";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -54,3 +55,13 @@ export default new Router({
     }
   ]
 });
+
+router.beforeEach((routeTo, routeFrom, next) => {
+  NProgress.start();
+  next();
+});
+router.afterEach(() => {
+  NProgress.done();
+});
+
+export default router;
