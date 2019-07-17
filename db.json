@@ -357,6 +357,20 @@
       "date": "2019-07-04T18:41:00.000Z",
       "time": "9:00",
       "attendees": []
+    },
+    {
+      "id": 9897402,
+      "category": "animal welfare",
+      "organizer": {
+        "id": "i123",
+        "name": "ashutosh"
+      },
+      "title": "sds",
+      "description": "dsd",
+      "location": "sds",
+      "date": "",
+      "time": "",
+      "attendees": []
     }
   ]
 }
