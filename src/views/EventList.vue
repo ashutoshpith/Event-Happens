@@ -20,21 +20,36 @@
 <script>
 import EventList from "@/components/EventList.vue";
 import { mapState } from "vuex";
+import store from "@/store/store.js";
 
+function getPageEvents(routeTo, next) {
+  const currentPage = parseInt(routeTo.query.page) || 1;
+  store
+    .dispatch("event/fetchEvents", {
+      page: currentPage
+    })
+    .then(() => {
+      routeTo.params.page = currentPage;
+      next();
+    });
+}
 export default {
+  props: {
+    page: {
+      type: Number,
+      required: true
+    }
+  },
   components: {
     EventList
   },
-  created() {
-    this.$store.dispatch("event/fetchEvents", {
-      perPage: 3,
-      page: this.page
-    });
+  beforeRouteEnter(routeTo, routeFrom, next) {
+    getPageEvents(routeTo, next);
+  },
+  beforeRouteUpdate(routeTo, routeFrom, next) {
+    getPageEvents(routeTo, next);
   },
   computed: {
-    page() {
-      return parseInt(this.$route.query.page) || 1;
-    },
     ...mapState(["event", "user"])
   }
 };

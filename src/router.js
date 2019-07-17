@@ -36,7 +36,8 @@ const router = new Router({
     {
       path: "/list",
       name: "event-list",
-      component: EventList
+      component: EventList,
+      props: true
     },
     {
       path: "/eventlist",
